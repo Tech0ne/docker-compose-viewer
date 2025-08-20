@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% set title = "Docker Compose 3D Viewer" %}
+
+{% block content %}
+<div class="container has-text-centered" style="max-width: 500px;">
+  <h1 class="title has-text-white">Upload your docker-compose.yml</h1>
+    <form action="{{ url_for('main.view_file') }}" method="post" enctype="multipart/form-data">
+        <div class="file has-name is-boxed is-fullwidth">
+            <label class="file-label">
+                <input id="file-input" class="file-input" type="file" name="file" accept=".yml,.yaml" required>
+                <span class="file-cta">
+                    <span class="file-icon">📄</span>
+                    <span class="file-label">Choose a file…</span>
+                </span>
+                <span id="file-name" class="file-name">No file selected</span>
+            </label>
+        </div>
+        <button class="button is-primary is-fullwidth mt-4" type="submit">View in 3D</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('file-input').addEventListener('change', function(){
+    const fileName = this.files.length > 0 ? this.files[0].name : "No file selected";
+    document.getElementById('file-name').textContent = fileName;
+});
+</script>
+{% endblock %}

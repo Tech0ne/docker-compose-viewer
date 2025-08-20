@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% set title = "View - Docker Compose 3D Viewer" %}
+
+{% block content %}
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .full-page-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #1e1e1e;
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        color: white;
+        background-color: #1e1e1e;
+        z-index: 5;
+    }
+
+    .info-box {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 1rem;
+        border-radius: 8px;
+        max-width: 300px;
+        font-size: 0.9rem;
+        color: #333;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #3d-graph-container {
+        flex: 1;
+        position: relative;
+    }
+
+    #3d-graph {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "//unpkg.com/three/build/three.module.js"
+    }
+}
+</script>
+<script src="https://unpkg.com/3d-force-graph"></script>
+<script type="module" src="{{ url_for('static', filename='graph.js') }}"></script>
+
+<script>
+    const GRAPH_DATA = {
+        nodes: {{ nodes | tojson }},
+        links: {{ links | tojson }}
+    };
+</script>
+
+<div class="full-page-container">
+    <!-- Top Bar: Title on the left, Info box on the right -->
+    <div class="top-bar">
+        <div>
+            <h1 class="title has-text-white">Cluster View</h1>
+            <p class="subtitle has-text-grey-light">Visualizing your Docker Compose cluster in 3D</p>
+        </div>
+        <div id="node-info-box" class="info-box hidden">
+            <h3>Node Information</h3>
+            <p id="node-info-content"></p>
+        </div>
+    </div>
+
+    <!-- 3D Graph Area -->
+    <div id="3d-graph-container">
+        <div id="3d-graph"></div>
+    </div>
+</div>
+{% endblock %}

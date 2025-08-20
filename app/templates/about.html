@@ -1,0 +1,35 @@
+{# templates/about.html #}
+{% extends "base.html" %}
+{% set title = "About - Docker Compose 3D Viewer" %}
+
+{% block content %}
+<div class="container has-text-centered" style="max-width: 700px;">
+    <h1 class="title has-text-white">About Docker Compose 3D Viewer</h1>
+    <p class="subtitle has-text-grey-light">
+        Visualize your Docker Compose clusters in a whole new dimension.
+    </p>
+
+    <div class="box has-background-dark">
+        <p>
+            This tool transforms your <strong>docker-compose.yml</strong> setups into a fully interactive 
+            <strong>3D visual environment</strong>. You can rotate, zoom, and inspect the relationships between
+            services in real time, making it easier to debug and plan your infrastructure.
+        </p>
+        <p class="mt-4">
+            Built with <strong>Three.js</strong> for 3D rendering and powered by 
+            <strong>Bulma</strong> for a sleek, responsive UI, this viewer is designed 
+            for developers who like their ops data to look as good as it works.
+        </p>
+    </div>
+
+    <div class="content has-text-grey-light">
+        <h2 class="has-text-white">Key Features</h2>
+        <ul>
+            <li>📦 Live parsing of <code>docker-compose.yml</code></li>
+            <li>🌐 Interactive 3D topology map</li>
+            <li>🔍 Zoom & filter by service type</li>
+            <li>🎨 Customizable color schemes for service categories</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

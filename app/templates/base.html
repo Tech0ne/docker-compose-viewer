@@ -1,0 +1,69 @@
+{# templates/base.html #}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or "Docker Compose 3D Viewer" }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+      html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .content-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        footer {
+            background-color: transparent;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        a {
+            color: #00d1b2;
+        }
+        a:hover {
+            color: #00b89c;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Navbar -->
+      <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item has-text-weight-bold is-size-5" href="/">
+            {{ app_name or "Docker Compose 3D Viewer" }}
+          </a>
+        </div>
+      </nav>
+      <!-- Center Content -->
+      <section class="content-area">
+        {% block content %}
+        <!-- Placeholder for the actual 3D viewer -->
+        <div class="has-text-centered">
+          <h1 class="title has-text-white">3D Viewer Coming Soon</h1>
+          <p class="subtitle has-text-grey-light">Your Docker Compose clusters in immersive 3D</p>
+        </div>
+        {% endblock %}
+      </section>
+      <!-- Footer -->
+      <footer>
+        <a href="{{ github_url or '#' }}" target="_blank" rel="noopener noreferrer">
+          View on GitHub
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
