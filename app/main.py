@@ -17,7 +17,7 @@ def home():
 
 @main.errorhandler(Exception)
 def error():
-    return redirect(url_for("fail"))
+    return redirect(url_for("main.fail"))
 
 
 @main.route("/fail")
@@ -29,10 +29,10 @@ def fail():
 def view_file():
     file = request.files.get("file")
     if not file:
-        return redirect(url_for("fail"))
+        return redirect(url_for("main.fail"))
 
     output, nodes, links = get_nodes_and_links(file)
     if not output:
-        return redirect(url_for("fail"))
+        return redirect(url_for("main.fail"))
 
     return render_template("view.html", nodes=nodes, links=links)

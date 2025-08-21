@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .linkOpacity(0.1)
         .linkWidth(2)
         .linkCurvature('curvature')
+        .linkDirectionalParticles("particles")
+        .linkDirectionalParticleSpeed(d => d.particles * 0.001)
         .onNodeClick(node => {
             infoContent.innerHTML = `
                 <strong>Name:</strong> ${node.name}<br>
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 infoContent.innerHTML += `
                     <strong>Image:</strong> ${node.image}<br>
                 `;
-            } else {
+            } else if (node.build) {
                 infoContent.innerHTML += `
                     <strong>Build:</strong> ${node.build}<br>
                 `;
